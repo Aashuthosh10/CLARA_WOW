@@ -149,6 +149,7 @@ export class CallRepository {
       if (result.rows.length === 0) return null;
       
       const row = result.rows[0];
+      const metadata = row.metadata || {};
       return {
         id: row.id,
         orgId: row.org_id,
@@ -157,8 +158,9 @@ export class CallRepository {
         acceptedByUserId: row.accepted_by_user_id,
         startedAt: row.started_at,
         endedAt: row.ended_at,
+        endedBy: metadata.endedBy,
         reason: row.reason,
-        metadata: row.metadata,
+        metadata: metadata,
         ringExpiresAt: row.ring_expires_at,
         createdAt: row.created_at,
         updatedAt: row.updated_at,
@@ -235,6 +237,14 @@ export class CallRepository {
         values.push(metadata.reason);
         paramIndex++;
       }
+      if (metadata?.endedBy) {
+        // Store endedBy in metadata since we don't have a dedicated column
+        const currentMetadata = metadata.metadata || {};
+        currentMetadata.endedBy = metadata.endedBy;
+        updates.push(`metadata = $${paramIndex}`);
+        values.push(JSON.stringify(currentMetadata));
+        paramIndex++;
+      }
 
       await this.pool.query(
         `UPDATE calls SET ${updates.join(', ')} WHERE id = $1`,
@@ -271,20 +281,24 @@ export class CallRepository {
         [now]
       );
 
-      return result.rows.map(row => ({
-        id: row.id,
-        orgId: row.org_id,
-        status: row.status as CallStatus,
-        createdByUserId: row.created_by_user_id,
-        acceptedByUserId: row.accepted_by_user_id,
-        startedAt: row.started_at,
-        endedAt: row.ended_at,
-        reason: row.reason,
-        metadata: row.metadata,
-        ringExpiresAt: row.ring_expires_at,
-        createdAt: row.created_at,
-        updatedAt: row.updated_at,
-      }));
+      return result.rows.map(row => {
+        const metadata = row.metadata || {};
+        return {
+          id: row.id,
+          orgId: row.org_id,
+          status: row.status as CallStatus,
+          createdByUserId: row.created_by_user_id,
+          acceptedByUserId: row.accepted_by_user_id,
+          startedAt: row.started_at,
+          endedAt: row.ended_at,
+          endedBy: metadata.endedBy,
+          reason: row.reason,
+          metadata: metadata,
+          ringExpiresAt: row.ring_expires_at,
+          createdAt: row.created_at,
+          updatedAt: row.updated_at,
+        };
+      });
     } catch (e) {
       console.error('Failed to find timed out calls:', e);
       return [];

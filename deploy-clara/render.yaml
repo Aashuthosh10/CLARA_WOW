@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: clara-server
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ENABLE_UNIFIED_MODE
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: clara-postgres
+          property: connectionString
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: clara_db
+      - key: CORS_ORIGINS
+        sync: false
+      - key: CLIENT_PUBLIC_PATH
+        value: /
+      - key: STAFF_PUBLIC_PATH
+        value: /staff
+      - key: SOCKET_PATH
+        value: /socket
+      - key: RING_TIMEOUT_MS
+        value: "45000"
+      - key: GEMINI_API_KEY
+        sync: false
+
+databases:
+  - name: clara-postgres
+    databaseName: clara
+    user: clara
+    plan: free
+
