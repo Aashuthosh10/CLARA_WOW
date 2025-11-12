@@ -395,13 +395,9 @@ const AIChatAssistant: React.FC = () => {
                     setStatus('Connected. You can start speaking now.');
                     const source = inputAudioContextRef.current!.createMediaStreamSource(mediaStreamRef.current!);
                     
-                    // Use AudioWorkletNode if available, otherwise fall back to ScriptProcessorNode (deprecated but functional)
-                    if (inputAudioContextRef.current.audioWorklet) {
-                        // AudioWorkletNode is preferred but requires module setup
-                        // For now, we'll use ScriptProcessorNode with a deprecation warning
-                        console.warn('ScriptProcessorNode is deprecated. Consider migrating to AudioWorkletNode for better performance.');
-                    }
-                    
+                    // Use ScriptProcessorNode for audio processing
+                    // Note: ScriptProcessorNode is deprecated but functional
+                    // AudioWorkletNode would require module setup via audioWorklet.addModule()
                     scriptProcessorRef.current = inputAudioContextRef.current!.createScriptProcessor(4096, 1, 1);
 
                     scriptProcessorRef.current.onaudioprocess = (audioProcessingEvent) => {
