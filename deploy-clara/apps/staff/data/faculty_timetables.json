@@ -1,0 +1,803 @@
+{
+  "academicYear": "2025-26",
+  "semester": "ODD",
+  "department": "CSE (Data Science)",
+  "institution": "SAI VIDYA INSTITUTE OF TECHNOLOGY",
+  "faculties": [
+    {
+      "id": "FAC001",
+      "name": "Mrs. Jyoti Kumari",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "CNS", "class": "7th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "CNS", "class": "7th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "SML Lab", "class": "7th B", "type": "Lab"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"},
+          {"time": "12:30-01:15", "subject": "CNS", "class": "7th A", "type": "Theory"},
+          {"time": "01:15-02:10", "subject": "CNS", "class": "7th B", "type": "Theory"},
+          {"time": "02:10-03:05", "subject": "DDCO Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "CNS", "class": "7th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "CNS", "class": "7th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "CN Lab", "class": "5th A", "type": "Lab"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"},
+          {"time": "12:30-01:15", "subject": "CNS", "class": "7th A", "type": "Theory"},
+          {"time": "01:15-02:10", "subject": "OS Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "PP Lab", "class": "7th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML Lab", "class": "7th A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "GIT", "class": "3rd B", "type": "Lab"},
+          {"time": "12:30-01:15", "subject": "CNS", "class": "7th B", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "GIT", "class": "3rd A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "CN Lab", "class": "5th B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "DDCO Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "OS Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS703", "name": "Cryptography & Network Security", "type": "Theory", "units": 8},
+        {"code": "BAD702", "name": "Statistical Machine Learning for Data Science Lab", "type": "Lab", "units": 8},
+        {"code": "BCSL305", "name": "Data structures laboratory", "type": "Lab", "units": 10},
+        {"code": "BDS701", "name": "Parallel Programming Lab", "type": "Lab", "units": 8},
+        {"code": "BCS303", "name": "Operating Systems Lab", "type": "Lab", "units": 8}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC002",
+      "name": "Mrs. Pavithra B",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "DS Lab(B1)", "class": "3rd B", "type": "Lab"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "IDT", "class": "1st B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "GIT Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS Lab(B2)", "class": "3rd B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "OS Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "IDT", "class": "1st A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS304", "name": "Data Structures And Applications", "type": "Theory", "units": 7},
+        {"code": "BCSL305", "name": "Data structures laboratory", "type": "Lab", "units": 10},
+        {"code": "BCS358C", "name": "Project Management With Git", "type": "Lab", "units": 0},
+        {"code": "BCS303", "name": "Operating Systems", "type": "Theory", "units": 0},
+        {"code": "1BIDTL158", "name": "Innovation and Design Thinking Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 17
+    },
+    {
+      "id": "FAC003",
+      "name": "Mr. Amarnath B Patil",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "JAVA", "class": "3rd A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "JAVA Lab(A2)", "class": "3rd A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "JAVA", "class": "3rd B", "type": "Theory"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "JAVA", "class": "3rd A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "JAVA", "class": "3rd B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "JAVA Lab(B2)", "class": "3rd B", "type": "Lab"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"},
+          {"time": "12:30-01:15", "subject": "JAVA Lab (B2)", "class": "3rd B", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "JAVA", "class": "3rd B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "JAVA", "class": "3rd A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "GIT Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "GIT Lab", "class": "3rd A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "JAVA Lab(A1)", "class": "3rd A", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "JAVA", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "JAVA Lab(B1)", "class": "3rd B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "JAVA", "class": "3rd A", "type": "Theory"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS306A", "name": "Object Oriented Programming With Java", "type": "Theory", "units": 8},
+        {"code": "BCS306A", "name": "Object Oriented Programming With Java Lab", "type": "Lab", "units": 8},
+        {"code": "BCS358C", "name": "Project Management With Git", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC004",
+      "name": "Ms. Lakshmi Durga N",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "SE", "class": "5th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SE", "class": "5th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SE", "class": "5th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "SE", "class": "5th A", "type": "Theory"},
+          {"time": "12:30-01:15", "subject": "OS Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "SE", "class": "5th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML Lab", "class": "7th A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "SE", "class": "5th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "SE", "class": "5th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCD501", "name": "Software Engineering & Project Management", "type": "Theory", "units": 8},
+        {"code": "BCDL504", "name": "Data Visualization Lab", "type": "Lab", "units": 8},
+        {"code": "BCS303", "name": "Operating Systems", "type": "Theory", "units": 0},
+        {"code": "BCS358C", "name": "Project Management With Git", "type": "Lab", "units": 0},
+        {"code": "BAD702", "name": "Statistical Machine Learning for Data Science Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC005",
+      "name": "Dr. Nagashree N",
+      "designation": "Associate Professor & HOD",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "TOC", "class": "5th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "TOC", "class": "5th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "TOC", "class": "5th A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "TOC", "class": "5th A", "type": "Theory"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "TOC", "class": "5th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "TOC", "class": "5th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "TOC", "class": "5th B", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "TOC", "class": "5th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS503", "name": "Theory of Computation", "type": "Theory", "units": 10}
+      ],
+      "totalUnits": 10
+    },
+    {
+      "id": "FAC006",
+      "name": "Dr. A M Padma Reddy",
+      "designation": "Dean Student Affairs, Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "A&B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS", "class": "A&B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DS", "class": "A&B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "A&B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DS", "class": "A&B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "A&B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "DS(A&B)", "class": "A&B", "type": "Theory"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS304", "name": "Data Structures and Applications (DS)", "type": "Theory", "units": 14}
+      ],
+      "totalUnits": 14
+    },
+    {
+      "id": "FAC007",
+      "name": "Mrs. Anitha C S",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "RM", "class": "5th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "RM", "class": "5th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "DDCO Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "CN Lab", "class": "5th A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "RM", "class": "5th B", "type": "Theory"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "RM", "class": "5th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "RM", "class": "5th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "CN Lab", "class": "5th B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "RM", "class": "5th A", "type": "Theory"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "RM", "class": "5th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "RM", "class": "5th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BRMK557", "name": "Research Methodology and IPR", "type": "Theory", "units": 8},
+        {"code": "BCS502", "name": "Computer Networks (NS-2/3) Lab", "type": "Lab", "units": 8},
+        {"code": "BAIL504", "name": "Data Visualization Lab", "type": "Lab", "units": 0},
+        {"code": "BCS302", "name": "Digital Design And Computer Organization Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC008",
+      "name": "Mrs. Vidyashree R",
+      "designation": "Assistant Professor (POP)",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "SML", "class": "7th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML Lab", "class": "7th B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "SML", "class": "7th A", "type": "Theory"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML", "class": "7th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "SML", "class": "7th A", "type": "Theory"},
+          {"time": "12:30-01:15", "subject": "JAVA Lab (B2)", "class": "3rd B", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "SML", "class": "7th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML Lab", "class": "7th A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "SML", "class": "7th B", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "JAVA Lab (B1)", "class": "3rd B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BAD702", "name": "Statistical Machine Learning for Data Science", "type": "Theory", "units": 6},
+        {"code": "BAD702", "name": "Statistical Machine Learning for Data Science Lab", "type": "Lab", "units": 10},
+        {"code": "BCDL504", "name": "Data Visualization Lab", "type": "Lab", "units": 0},
+        {"code": "BCS306A", "name": "Object Oriented Programming With Java Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC009",
+      "name": "Mrs. Pulukuri Aparna",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "3rd A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS Lab(A1)", "class": "3rd A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "AI", "class": "1st B", "type": "Theory"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "AI", "class": "1st A", "type": "Theory"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "AI", "class": "1st B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "AI", "class": "1st A", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "AI", "class": "1st A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "AI", "class": "1st B", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"},
+          {"time": "12:30-01:15", "subject": "DS Lab(A2)", "class": "3rd A", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "AI", "class": "1st A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "AI", "class": "1st B", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "DS", "class": "3rd A", "type": "Theory"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS304", "name": "Data Structures And Applications", "type": "Theory", "units": 15},
+        {"code": "BCSL305", "name": "Data structures laboratory", "type": "Lab", "units": 2},
+        {"code": "1BAIA103", "name": "Introduction to AI and Applications", "type": "Theory", "units": 0}
+      ],
+      "totalUnits": 17
+    },
+    {
+      "id": "FAC010",
+      "name": "Mrs. Nisha S K",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "NOSQL", "class": "5th A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "NOSQL", "class": "5th B", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "DDCO Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "NOSQL", "class": "5th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "NOSQL", "class": "5th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "NOSQL", "class": "5th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "GIT Lab", "class": "3rd A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "NOSQL", "class": "5th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "DDCO Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "NOSQL", "class": "5th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "NOSQL", "class": "5th A", "type": "Theory"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCD515C", "name": "NOSQL Databases", "type": "Theory", "units": 8},
+        {"code": "BCS302", "name": "Digital Design And Computer Organization Lab", "type": "Lab", "units": 8},
+        {"code": "BCS358C", "name": "Project Management With Git", "type": "Lab", "units": 0},
+        {"code": "BAIL504", "name": "Data Visualization Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC011",
+      "name": "Mrs. Bhavya T N",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "PP Lab", "class": "7th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "OS", "class": "3rd B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "OS", "class": "3rd B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "OS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "OS Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "OS", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "OS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "CN Lab", "class": "5th B", "type": "Lab"},
+          {"time": "10:20-10:40", "subject": "OS", "class": "3rd A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "OS Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS303", "name": "Operating Systems", "type": "Theory", "units": 9},
+        {"code": "BCS303", "name": "Operating Systems Lab", "type": "Lab", "units": 8},
+        {"code": "BCS502", "name": "Computer Networks (NS-2/3) Lab", "type": "Lab", "units": 0},
+        {"code": "BDS701", "name": "Parallel Programming Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 17
+    },
+    {
+      "id": "FAC012",
+      "name": "Mrs. Shwetha H C",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "PP Lab", "class": "7th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML Lab", "class": "7th B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DL", "class": "7th A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "DL", "class": "7th B", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "DS Lab(B1)", "class": "3rd B", "type": "Lab"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "PP Lab", "class": "7th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "SML Lab", "class": "7th A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "DL", "class": "7th B", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"},
+          {"time": "12:30-01:15", "subject": "DH", "class": "SHC", "type": "Theory"},
+          {"time": "01:15-02:10", "subject": "PP", "class": "Dr. BA/Prof.MA(POP)", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "DL", "class": "7th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "DL", "class": "7th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DS Lab(B2)", "class": "3rd B", "type": "Lab"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "OS Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS714A", "name": "Deep Learning", "type": "Theory", "units": 6},
+        {"code": "BCSL305", "name": "Data structures laboratory", "type": "Lab", "units": 10},
+        {"code": "BCS303", "name": "Operating Systems Lab", "type": "Lab", "units": 0},
+        {"code": "BDS701", "name": "Parallel Programming", "type": "Lab", "units": 0},
+        {"code": "BAD702", "name": "Statistical Machine Learning for Data Science", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 16
+    },
+    {
+      "id": "FAC013",
+      "name": "Dr. Dhivyasri G",
+      "designation": "Associate Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "CN", "class": "5th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "CN", "class": "5th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "CN", "class": "5th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "CN Lab", "class": "5th A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "CN", "class": "5th A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "CN", "class": "5th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "CN", "class": "5th A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "CN Lab", "class": "5th B", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "CN", "class": "5th B", "type": "Theory"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "DV Lab", "class": "5th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS502", "name": "Computer Networks (NS-2/3)", "type": "Theory", "units": 8},
+        {"code": "BCS502", "name": "Computer Networks (NS-2/3) Lab", "type": "Lab", "units": 6},
+        {"code": "BAIL504", "name": "Data Visualization Lab", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 14
+    },
+    {
+      "id": "FAC014",
+      "name": "Dr. Bhavana A",
+      "designation": "Associate Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "PP Lab", "class": "7th A", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "PP", "class": "7th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "PP", "class": "7th B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "PP", "class": "7th A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "PP", "class": "7th B", "type": "Theory"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "PP Lab", "class": "7th B", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "PP", "class": "7th A", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "PP", "class": "7th A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "PP", "class": "7th B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "PP", "class": "7th B", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"},
+          {"time": "12:30-01:15", "subject": "DDCO Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BDS701", "name": "Parallel Programming", "type": "Theory", "units": 8},
+        {"code": "BDS701", "name": "Parallel Programming Lab", "type": "Lab", "units": 6},
+        {"code": "BCS302", "name": "Digital Design And Computer Organization", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 14
+    },
+    {
+      "id": "FAC015",
+      "name": "Dr. K N Pushpalatha",
+      "designation": "Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DDCO", "class": "3rd B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "DDCO Lab", "class": "3rd A", "type": "Lab"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "DDCO", "class": "3rd B", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "DDCO", "class": "3rd A", "type": "Theory"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "DDCO", "class": "3rd A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "DDCO", "class": "3rd B", "type": "Theory"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DDCO", "class": "3rd B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "DDCO", "class": "3rd A", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "DDCO Lab", "class": "3rd B", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "DDCO", "class": "3rd A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCS302", "name": "Digital design and computer organization", "type": "Theory", "units": 8},
+        {"code": "BCS302", "name": "Digital Design And Computer Organization Lab", "type": "Lab", "units": 4}
+      ],
+      "totalUnits": 12
+    },
+    {
+      "id": "FAC016",
+      "name": "Ms. Kayalvizhi",
+      "designation": "Assistant Professor",
+      "timetable": {
+        "Monday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "Python", "class": "1st A", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "JAVA Lab(A2)", "class": "3rd A", "type": "Lab"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "RSE", "class": "7th B", "type": "Theory"},
+          {"time": "12:30-01:15", "subject": "Python", "class": "1st B", "type": "Theory"}
+        ],
+        "Tuesday": [
+          {"time": "08:30-09:25", "subject": "Python Lab", "class": "1st A)(A2", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "RSE", "class": "7th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "Python", "class": "1st B", "type": "Theory"},
+          {"time": "12:30-01:15", "subject": "Python", "class": "1st A", "type": "Theory"}
+        ],
+        "Wednesday": [
+          {"time": "08:30-09:25", "subject": "Coffee Break", "type": "Break"},
+          {"time": "09:25-10:20", "subject": "Python", "class": "1st B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "RSE", "class": "7th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Python", "class": "1st A", "type": "Theory"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Thursday": [
+          {"time": "08:30-09:25", "subject": "Python Lab", "class": "1st B)(B2", "type": "Lab"},
+          {"time": "09:25-10:20", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:20-10:40", "subject": "RSE", "class": "7th B", "type": "Theory"},
+          {"time": "10:40-11:35", "subject": "Lunch Break", "type": "Break"},
+          {"time": "11:35-12:30", "subject": "Python Lab", "class": "1st A)(A1", "type": "Lab"},
+          {"time": "12:30-01:15", "subject": "JAVA Lab(A1)", "class": "3rd A", "type": "Lab"}
+        ],
+        "Friday": [
+          {"time": "08:30-09:25", "subject": "Python", "class": "1st A", "type": "Theory"},
+          {"time": "09:25-10:20", "subject": "Python", "class": "1st B", "type": "Theory"},
+          {"time": "10:20-10:40", "subject": "Coffee Break", "type": "Break"},
+          {"time": "10:40-11:35", "subject": "Python Lab", "class": "1st B)(B1", "type": "Lab"},
+          {"time": "11:35-12:30", "subject": "Lunch Break", "type": "Break"}
+        ],
+        "Saturday": [
+          {"time": "08:30-09:25", "subject": "Free", "type": "Free"}
+        ]
+      },
+      "courses": [
+        {"code": "BCV755A", "name": "Road Safety Engineering", "type": "Theory", "units": 12},
+        {"code": "BCS306A", "name": "Object Oriented Programming With Java Lab", "type": "Lab", "units": 6},
+        {"code": "1BPLCK105B", "name": "Introduction to Python Programming", "type": "Theory", "units": 0},
+        {"code": "1BPLCK105B", "name": "Python Programming Laboratory", "type": "Lab", "units": 0}
+      ],
+      "totalUnits": 18
+    }
+  ],
+  "classSchedule": {
+    "timeSlots": [
+      {"slot": 1, "time": "08:30-09:25"},
+      {"slot": 2, "time": "09:25-10:20"},
+      {"slot": 3, "time": "10:20-10:40", "type": "Coffee Break"},
+      {"slot": 4, "time": "10:40-11:35"},
+      {"slot": 5, "time": "11:35-12:30"},
+      {"slot": 6, "time": "12:30-01:15", "type": "Lunch Break"},
+      {"slot": 7, "time": "01:15-02:10"},
+      {"slot": 8, "time": "02:10-03:05"},
+      {"slot": 9, "time": "03:05-04:10"}
+    ]
+  }
+}
+

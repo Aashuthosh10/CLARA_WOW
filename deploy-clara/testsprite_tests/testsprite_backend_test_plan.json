@@ -1,0 +1,52 @@
+[
+  {
+    "id": "TC001",
+    "title": "health check endpoint should return server status ok",
+    "description": "Verify that the GET /healthz endpoint returns a 200 status code with a JSON body containing { status: 'ok' } indicating the server is healthy."
+  },
+  {
+    "id": "TC002",
+    "title": "staff login should authenticate and return jwt tokens",
+    "description": "Test the POST /api/auth/login endpoint with valid email and password to ensure it returns a 200 status code with a JSON response containing a JWT token, refreshToken, and user object."
+  },
+  {
+    "id": "TC003",
+    "title": "refresh token endpoint should issue new access token",
+    "description": "Test the POST /api/auth/refresh-token endpoint with a valid refreshToken to verify it returns a 200 status code and issues a new access token."
+  },
+  {
+    "id": "TC004",
+    "title": "initiate video call should create call and return call id and status",
+    "description": "Verify that POST /api/v1/calls with required parameters initiates a video call, returning 200 status with callId and status (ringing or initiated). Also test 503 response when no staff is available."
+  },
+  {
+    "id": "TC005",
+    "title": "accept call should succeed only if call is ringing",
+    "description": "Test POST /api/v1/calls/{callId}/accept to accept a call only if it is in ringing state. Verify 200 on success and 409 if call is already accepted or not ringing."
+  },
+  {
+    "id": "TC006",
+    "title": "decline call should mark call as declined with reason",
+    "description": "Verify POST /api/v1/calls/{callId}/decline marks the call as declined and accepts an optional reason in the request body, returning 200 status."
+  },
+  {
+    "id": "TC007",
+    "title": "get available staff should return list filtered by org and skills",
+    "description": "Test GET /api/v1/staff/availability with optional orgId and skills query parameters to ensure it returns a 200 status with a list of available staff matching the criteria."
+  },
+  {
+    "id": "TC008",
+    "title": "set staff availability should update status and skills",
+    "description": "Verify POST /api/v1/staff/availability updates the staff member's availability status and skills, returning 200 status on success."
+  },
+  {
+    "id": "TC009",
+    "title": "get notifications should return all notifications",
+    "description": "Test GET /api/notifications to ensure it returns a 200 status with a list of all notifications for the authenticated user."
+  },
+  {
+    "id": "TC010",
+    "title": "mark notification as read should update notification status",
+    "description": "Verify PATCH /api/notifications/{id}/read marks the specified notification as read and returns a 200 status."
+  }
+]

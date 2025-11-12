@@ -1,0 +1,301 @@
+.map-navigator {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.map-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.map-close-button:hover {
+  background: #e5e7eb;
+  color: #374151;
+  transform: scale(1.1);
+}
+
+.floor-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.floor-button {
+  padding: 12px 24px;
+  border: 2px solid #6366f1;
+  background: white;
+  color: #6366f1;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.floor-button:hover {
+  background: #eef2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+}
+
+.floor-button.active {
+  background: #6366f1;
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.map-container {
+  position: relative;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.map-svg {
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.path-line {
+  animation: drawLine 0.5s ease-out forwards;
+  filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.3));
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+  }
+}
+
+.path-point {
+  animation: pointPulse 1s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.4));
+}
+
+@keyframes pointPulse {
+  0%, 100% {
+    r: 8;
+    opacity: 1;
+  }
+  50% {
+    r: 12;
+    opacity: 0.8;
+  }
+}
+
+.destination-pulse {
+  animation: pulsate 1.5s ease-out infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    r: 20;
+    opacity: 1;
+  }
+  100% {
+    r: 35;
+    opacity: 0;
+  }
+}
+
+.destination-marker {
+  animation: bounce 1s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(244, 67, 54, 0.4));
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.destination-label {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.reception-pulse {
+  animation: receptionPulse 2s ease-in-out infinite;
+}
+
+@keyframes receptionPulse {
+  0%, 100% {
+    r: 15;
+    opacity: 0.3;
+  }
+  50% {
+    r: 20;
+    opacity: 0.5;
+  }
+}
+
+.location-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  max-width: 250px;
+  animation: slideIn 0.5s ease-out;
+  z-index: 5;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.location-info h3 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.location-info .room-number {
+  margin: 5px 0;
+  color: #6366f1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.location-info .floor-info {
+  margin: 5px 0;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.location-info .description {
+  margin: 10px 0 0 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.call-confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.call-confirm-actions button {
+  border: none;
+  border-radius: 9999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.call-confirm-actions button.confirm {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.call-confirm-actions button.confirm:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.call-confirm-actions button.cancel {
+  background: #334155;
+  color: #ffffff;
+}
+
+.call-confirm-actions button.cancel:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+}
+
+.call-confirm-status {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.call-confirm-status.confirmed {
+  color: #22c55e;
+}
+
+.call-confirm-status.cancelled {
+  color: #f97316;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .map-navigator {
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .floor-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .location-info {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    max-width: 100%;
+  }
+
+  .map-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .map-container {
+    min-height: 400px;
+  }
+}
+

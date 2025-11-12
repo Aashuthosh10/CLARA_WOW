@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: clara
+      POSTGRES_PASSWORD: clara
+      POSTGRES_DB: clara
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clara"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ..
+      dockerfile: apps/server/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      NODE_ENV: production
+      PORT: 8080
+      DATABASE_URL: postgres://clara:clara@postgres:5432/clara
+      JWT_SECRET: ${JWT_SECRET:-changeme}
+      ENABLE_UNIFIED_MODE: "true"
+      CORS_ORIGINS: http://localhost:5173,http://localhost:5174,http://localhost:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ../apps/client/dist:/app/client/dist
+      - ../apps/staff/dist:/app/staff/dist
+
+volumes:
+  postgres_data:
+

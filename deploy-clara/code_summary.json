@@ -1,0 +1,237 @@
+{
+  "project_name": "AI-STUDIO (Clara Unified Monorepo)",
+  "project_type": "monorepo",
+  "tech_stack": {
+    "frontend": {
+      "framework": "React 19",
+      "language": "TypeScript",
+      "build_tool": "Vite",
+      "router": "react-router-dom",
+      "ui_libraries": ["framer-motion"],
+      "realtime": "socket.io-client"
+    },
+    "backend": {
+      "framework": "Express.js",
+      "language": "TypeScript",
+      "realtime": "Socket.IO",
+      "database": "PostgreSQL (with in-memory fallback)",
+      "auth": "JWT (jsonwebtoken)",
+      "validation": "Zod",
+      "security": ["express-rate-limit", "CORS"]
+    },
+    "ai_services": {
+      "gemini": "@google/genai"
+    },
+    "testing": {
+      "server": "Vitest",
+      "frontend": "Not configured yet"
+    }
+  },
+  "architecture": {
+    "structure": "monorepo with workspaces",
+    "apps": [
+      {
+        "name": "client",
+        "type": "frontend",
+        "port": 5173,
+        "description": "Client interface for video calls"
+      },
+      {
+        "name": "staff",
+        "type": "frontend",
+        "port": 5174,
+        "description": "Staff dashboard interface"
+      },
+      {
+        "name": "server",
+        "type": "backend",
+        "port": 8080,
+        "description": "Unified Express + Socket.IO server"
+      }
+    ],
+    "packages": [
+      {
+        "name": "shared",
+        "description": "Shared TypeScript types and events"
+      },
+      {
+        "name": "webrtc",
+        "description": "WebRTC validation helpers"
+      }
+    ]
+  },
+  "key_features": [
+    {
+      "name": "WebRTC Video Calls",
+      "description": "Real-time video calling between clients and staff using RTCPeerConnection",
+      "components": ["CallService.ts", "StaffRTC.ts", "VideoCallView.tsx", "IncomingCallModal.tsx"],
+      "endpoints": ["/api/calls/initiate", "/api/calls/accept", "/api/calls/decline", "/api/calls/sdp", "/api/calls/ice"]
+    },
+    {
+      "name": "Real-time Communication",
+      "description": "Socket.IO for real-time signaling, notifications, and call updates",
+      "namespace": "/rtc",
+      "events": ["call:incoming", "call:update", "call:sdp", "call:ice", "join:call", "call:accept", "call:decline"]
+    },
+    {
+      "name": "AI Chat Assistant",
+      "description": "AI-powered chat assistant using Google Gemini",
+      "components": ["AIChatAssistant.tsx", "geminiService.ts"]
+    },
+    {
+      "name": "Notification System",
+      "description": "Real-time notifications with sync and persistence",
+      "components": ["NotificationProvider.tsx", "NotificationContainer.tsx", "NotificationSync.tsx"],
+      "endpoints": ["/api/notifications", "/api/notifications/unread", "/api/notifications/:id/read", "/api/notifications/read-all"]
+    },
+    {
+      "name": "Meeting Management",
+      "description": "Schedule and manage meetings with localStorage persistence",
+      "components": ["MeetingSummarizer.tsx", "Dashboard.tsx"],
+      "features": ["Create meetings", "View meetings", "Meeting summaries"]
+    },
+    {
+      "name": "Timetable Management",
+      "description": "Personal timetable with per-user localStorage persistence",
+      "components": ["Timetable.tsx", "Dashboard.tsx"]
+    },
+    {
+      "name": "Task Management",
+      "description": "Task tracking and management",
+      "components": ["TaskManagement.tsx"]
+    },
+    {
+      "name": "Team Directory",
+      "description": "Team member directory with chat groups",
+      "components": ["TeamDirectory.tsx"],
+      "features": ["View team members", "Create groups", "Group chat", "HOD (Head of Department) privileges"]
+    },
+    {
+      "name": "Authentication",
+      "description": "JWT-based authentication with refresh tokens",
+      "endpoints": ["/api/auth/login", "/api/auth/refresh-token", "/api/auth/logout"],
+      "features": ["Staff login", "Unified login", "Token refresh", "Auto-login demo mode"]
+    },
+    {
+      "name": "Settings",
+      "description": "User settings management",
+      "components": ["Settings.tsx"]
+    }
+  ],
+  "critical_components": [
+    {
+      "path": "apps/staff/components/Dashboard.tsx",
+      "description": "Main dashboard component with view routing, call handling, and state management",
+      "key_features": ["View switching", "Incoming call handling", "Video call management", "Context providers"]
+    },
+    {
+      "path": "apps/staff/services/StaffRTC.ts",
+      "description": "WebRTC service for staff-side video call handling",
+      "key_features": ["Socket connection", "Call acceptance/decline", "Peer connection management", "Media stream handling"]
+    },
+    {
+      "path": "apps/client/src/services/CallService.ts",
+      "description": "WebRTC service for client-side video call initiation",
+      "key_features": ["Call initiation", "Peer connection", "SDP/ICE exchange", "Media stream management"]
+    },
+    {
+      "path": "apps/server/src/index.ts",
+      "description": "Main Express server with REST API and Socket.IO setup",
+      "key_features": ["Auth middleware", "REST endpoints", "Rate limiting", "Proxy configuration"]
+    },
+    {
+      "path": "apps/server/src/socket.ts",
+      "description": "Socket.IO event handlers for real-time communication",
+      "key_features": ["Connection handling", "Call events", "SDP/ICE forwarding", "Room management"]
+    },
+    {
+      "path": "apps/staff/services/api.ts",
+      "description": "API service with token refresh and error handling",
+      "key_features": ["Request wrapper", "Token refresh", "Error handling", "Notification API"]
+    }
+  ],
+  "state_management": {
+    "react_context": ["UserContext"],
+    "localStorage": ["timetable", "meetings", "groups", "token", "refreshToken", "user"],
+    "component_state": "useState hooks",
+    "real_time_state": "Socket.IO events"
+  },
+  "security_features": [
+    "JWT authentication",
+    "Rate limiting (API and auth endpoints)",
+    "CORS configuration",
+    "Request validation (Zod schemas)",
+    "Token refresh mechanism"
+  ],
+  "environment_configuration": {
+    "unified_mode": "ENABLE_UNIFIED_MODE (feature flag)",
+    "ports": {
+      "client": 5173,
+      "staff": 5174,
+      "server": 8080
+    },
+    "optional_database": "PostgreSQL (with in-memory fallback)"
+  },
+  "testing_requirements": {
+    "frontend": {
+      "framework": "Vitest + React Testing Library",
+      "needs_setup": true,
+      "priority": [
+        "Component unit tests",
+        "WebRTC call flow tests",
+        "Socket.io event handling",
+        "State management tests",
+        "localStorage persistence tests",
+        "Error boundary tests"
+      ]
+    },
+    "backend": {
+      "framework": "Vitest (already configured)",
+      "priority": [
+        "API endpoint tests",
+        "Socket.io handler tests",
+        "Database repository tests",
+        "Authentication tests",
+        "WebRTC signaling tests"
+      ]
+    },
+    "integration": {
+      "priority": [
+        "End-to-end video call flow",
+        "Real-time notification delivery",
+        "Meeting scheduling",
+        "Team directory chat"
+      ]
+    },
+    "mocks_required": [
+      "WebRTC (RTCPeerConnection, MediaStream, getUserMedia)",
+      "Socket.IO (client and server)",
+      "localStorage",
+      "fetch API",
+      "navigator.mediaDevices"
+    ]
+  },
+  "dependencies": {
+    "frontend": [
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "socket.io-client",
+      "@google/genai",
+      "framer-motion"
+    ],
+    "backend": [
+      "express",
+      "socket.io",
+      "jsonwebtoken",
+      "zod",
+      "pg",
+      "cors",
+      "express-rate-limit",
+      "dotenv"
+    ]
+  }
+}
+
+
+

@@ -1,0 +1,797 @@
+[
+  {
+    "id": "TC001",
+    "title": "Successful staff login with valid credentials",
+    "description": "Verify that a staff user can log in successfully with valid email and password, receiving JWT and refresh token.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/auth/login with valid email and password"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains a valid JWT access token and a refresh token"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Failed staff login with invalid credentials",
+    "description": "Verify that staff login fails with invalid email or password, returning appropriate error status and message.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/auth/login with incorrect email or password"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 401 Unauthorized or similar"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains an error message indicating invalid credentials"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Refresh JWT access token",
+    "description": "Verify that the JWT access token can be refreshed successfully using a valid refresh token.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/auth/refresh-token with a valid refresh token"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response returns a new valid JWT access token"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Logout user invalidates session",
+    "description": "Verify that user logout properly invalidates the session and tokens.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/auth/logout with valid authorization token"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to use the same JWT token to access protected endpoints"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access is denied due to invalidated token"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Initiate a video call successfully",
+    "description": "Verify that a client can initiate a video call to available staff with correct call details and receive a ringing status.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls with valid clientId, optional orgId, reason, targetStaffId and department"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains callId and status is 'ringing' or 'initiated'"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Fail to initiate call when no staff available",
+    "description": "Verify that attempting to initiate a call when no staff is available returns the appropriate error response.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls with valid data but when no staff available"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 503 Service Unavailable"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains a message indicating no available staff"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Accept call successfully with CAS protection",
+    "description": "Verify that staff can accept a call in 'ringing' state using CAS-protected endpoint and call status updates accordingly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls/{callId}/accept for a call in 'ringing' state"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify call status is updated to accepted and no race condition allowed"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Reject accepting call if already accepted or invalid state",
+    "description": "Verify that accepting a call that is already accepted or not in 'ringing' state returns a 409 Conflict error.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls/{callId}/accept for a call already accepted or non-ringing state"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 409 Conflict"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response indicates call is already accepted or not ringing"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Decline a call with reason",
+    "description": "Verify staff can decline a call with an optional reason and call status updates accordingly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls/{callId}/decline with a decline reason"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm call status reflects it was declined"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Cancel an initiated call",
+    "description": "Verify that the client can cancel an initiated call and call status updates to canceled.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls/{callId}/cancel"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the call status is updated to canceled"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "End an ongoing call",
+    "description": "Verify that either client or staff can end an ongoing call and the system updates call status properly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/calls/{callId}/end"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm call status is updated to ended"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Retrieve call details including participants",
+    "description": "Verify that call details including participants can be fetched for valid callId, and 404 for invalid calls.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send GET request to /api/v1/calls/{callId} with a valid callId"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains call details with participant information"
+      },
+      {
+        "type": "action",
+        "description": "Send GET request to /api/v1/calls/{callId} with an invalid callId"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response status is 404 Not Found"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Get available staff list filtered by skills and orgId",
+    "description": "Verify staff availability API returns correct list of available staff filtered by organization and skills.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send GET request to /api/v1/staff/availability with orgId and skills query parameters"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains an array of staff objects filtered by given parameters"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Update staff availability status successfully",
+    "description": "Verify that staff can update their availability status to valid states and changes persist.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send POST request to /api/v1/staff/availability with allowed statuses (available, busy, away, offline)"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify staff availability status is updated accordingly in the system"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Retrieve all notifications for user",
+    "description": "Verify retrieval of all notifications for a user with correct permissions and data format.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send GET request to /api/notifications"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response contains list of notifications with correct fields"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Retrieve only unread notifications",
+    "description": "Verify that unread notifications can be fetched and only contain notifications marked unread.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send GET request to /api/notifications/unread"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify returned notifications are only unread"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Mark a single notification as read",
+    "description": "Verify that a notification can be marked as read and status updates accordingly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send PATCH request to /api/notifications/{id}/read"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the notification status is updated to read"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Mark all notifications as read",
+    "description": "Verify that all notifications can be marked as read by a single request.",
+    "category": "functional",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send PATCH request to /api/notifications/read-all"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all notifications are updated to read state"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Delete a notification successfully",
+    "description": "Verify that a user can delete a notification and that notification is removed.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send DELETE request to /api/notifications/{id}"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to retrieve deleted notification"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify notification no longer exists or returns 404"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "WebRTC call lifecycle signaling & race condition handling over Socket.IO",
+    "description": "Verify that WebRTC calls perform correct SDP offer/answer and ICE candidate exchange using Socket.IO, preventing race conditions using CAS-protected events.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate client initiating a WebRTC call triggering 'call.initiated' Socket.IO event"
+      },
+      {
+        "type": "action",
+        "description": "Simulate staff receiving 'call.initiated' and sending 'call.accepted' event"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify correct CAS state transition and no conflicting accept operations"
+      },
+      {
+        "type": "action",
+        "description": "Exchange SDP offers and answers using 'call:sdp' events"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that SDP exchange completes successfully"
+      },
+      {
+        "type": "action",
+        "description": "Exchange ICE candidates using 'call:ice' events"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure ICE candidates are received and processed correctly"
+      },
+      {
+        "type": "action",
+        "description": "Send call termination event 'call.ended' and verify all parties update call status"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Verify health check endpoint /healthz returns server status",
+    "description": "Verify that the /healthz endpoint responds with status 'ok' to indicate server readiness.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send GET request to /healthz"
+      },
+      {
+        "type": "assertion",
+        "description": "Check response status is 200 OK"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify response JSON contains {\"status\": \"ok\"}"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Staff availability status transitions and call routing reflection",
+    "description": "Verify that changes in staff availability status reflect immediately in call routing decisions and API responses.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Set staff status to 'available' via POST /api/v1/staff/availability"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify staff appears in GET /api/v1/staff/availability response as available"
+      },
+      {
+        "type": "action",
+        "description": "Change staff status to 'busy', 'away', 'offline' and verify they do not appear as available"
+      },
+      {
+        "type": "action",
+        "description": "Initiate call to staff with various status, verify only 'available' staff are routed calls"
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Verify development environment scripts start all services concurrently and handle port conflicts",
+    "description": "Verify that development start scripts launch all services with colored logs and gracefully handle common port conflicts.",
+    "category": "functional",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Run development start script"
+      },
+      {
+        "type": "assertion",
+        "description": "Check all services start concurrently with colored logs displayed correctly"
+      },
+      {
+        "type": "action",
+        "description": "Force port conflict and check script gracefully shows error and instructions"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "Encoding validation detects invalid BOM in source files",
+    "description": "Verify automated encoding validation scripts detect BOM or invalid UTF-16 encoding in source files before build.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Add BOM-affected file and run encoding validation script"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify script detects BOM presence and reports error"
+      },
+      {
+        "type": "action",
+        "description": "Run fix script to remove BOM and rerun validation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation passes with no errors"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "AI Chat Assistant responds with conversational replies using Google Gemini",
+    "description": "Verify the AI chat assistant leverages Google Gemini to provide appropriate conversational replies to user queries.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send chat message to AI assistant via relevant API or UI"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify AI assistant responds with coherent and context-aware text reply"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Team Directory group chat and Head of Department privileges",
+    "description": "Verify that users can interact with the team directory group chat and that Head of Department privileges enable correct management actions.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Access team directory and open group chat for a team"
+      },
+      {
+        "type": "action",
+        "description": "Send and receive messages in group chat"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify messages are delivered accurately and in real-time"
+      },
+      {
+        "type": "action",
+        "description": "Log in as Head of Department and perform privilege actions such as editing team members or groups"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that privilege actions are reflected properly in the directory and group"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Verify rate limiting enforcement on authentication endpoints",
+    "description": "Verify that authentication endpoints enforce rate limiting to prevent brute-force attacks and abuse.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send rapid repeated requests to /api/auth/login with invalid credentials beyond rate limit threshold"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify server responds with appropriate HTTP 429 Too Many Requests status"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify rate limiting resets after configured wait time"
+      }
+    ]
+  },
+  {
+    "id": "TC028",
+    "title": "JWT token validation rejects expired or tampered tokens",
+    "description": "Verify that requests with expired or tampered JWT tokens are rejected with appropriate error codes.",
+    "category": "security",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send request to protected endpoint with expired JWT token"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify server returns 401 Unauthorized"
+      },
+      {
+        "type": "action",
+        "description": "Send request with tampered JWT token"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify server returns 401 Unauthorized"
+      }
+    ]
+  },
+  {
+    "id": "TC029",
+    "title": "Validate input data schema validation with Zod",
+    "description": "Verify that invalid input data is rejected at API layer by Zod schema validation with clear error messages.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send API requests with missing or incorrect data types to endpoints such as login, call initiation, availability update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify HTTP 400 Bad Request responses with relevant validation error messages"
+      }
+    ]
+  },
+  {
+    "id": "TC030",
+    "title": "Verify secure CORS configuration",
+    "description": "Verify server CORS settings only allow allowed origins and deny others.",
+    "category": "security",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Send cross-origin request from an allowed origin"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify request is accepted and processed"
+      },
+      {
+        "type": "action",
+        "description": "Send cross-origin request from a disallowed origin"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify request is rejected by CORS middleware"
+      }
+    ]
+  },
+  {
+    "id": "TC031",
+    "title": "Verify TURN server integration establishes relay connections",
+    "description": "Verify WebRTC calls fallback to TURN server relay when direct peer-to-peer connectivity fails.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate network environment blocking direct peer connections"
+      },
+      {
+        "type": "action",
+        "description": "Initiate WebRTC call and observe ICE candidate gathering"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify relay connection via TURN server is established successfully"
+      }
+    ]
+  },
+  {
+    "id": "TC032",
+    "title": "Verify call lifecycle state transitions prevent race conditions",
+    "description": "Stress test concurrent call accept, decline, cancel requests and verify call lifecycle state remains consistent with CAS protection.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simultaneously send accept and decline requests for same callId"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only one request succeeds and call status updates accurately"
+      },
+      {
+        "type": "action",
+        "description": "Simultaneously send cancel and accept requests"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify consistent state and appropriate HTTP response codes"
+      }
+    ]
+  },
+  {
+    "id": "TC033",
+    "title": "Verify localStorage persistence of meetings, tasks, and timetables",
+    "description": "Verify that user meetings, tasks, and timetable data are properly saved to and loaded from localStorage.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Create and update meetings, tasks, and timetables in the UI"
+      },
+      {
+        "type": "assertion",
+        "description": "Check localStorage contains updated data for the user"
+      },
+      {
+        "type": "action",
+        "description": "Reload the application and verify data is restored correctly from localStorage"
+      }
+    ]
+  },
+  {
+    "id": "TC034",
+    "title": "Verify staff availability API updates and returns consistent staff status",
+    "description": "Verify staff availability repository maintains persistent and concurrent state management across requests.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Set availability status concurrently from multiple clients for same staff"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify final availability status is consistent and accurate after concurrent updates"
+      },
+      {
+        "type": "action",
+        "description": "Query available staff immediately after updates"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify API returns correct filtered staff list reflecting updates"
+      }
+    ]
+  },
+  {
+    "id": "TC035",
+    "title": "Verify metrics collection for production monitoring",
+    "description": "Verify server collects, exposes, and aggregates call, availability, and connection metrics for observability.",
+    "category": "functional",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Trigger normal call flows and availability updates"
+      },
+      {
+        "type": "action",
+        "description": "Access server metrics endpoints or monitoring dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify metrics reflect correct timing, counts, and state of calls and availability"
+      }
+    ]
+  }
+]

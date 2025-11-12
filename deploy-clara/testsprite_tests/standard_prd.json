@@ -1,0 +1,820 @@
+{
+  "meta": {
+    "project": "AI-STUDIO (Clara Unified Monorepo)",
+    "date": "2025-11-04",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "AI-STUDIO is a secure, unified monorepo platform enabling real-time video calls, AI-powered chat assistance, team collaboration, and productivity tools through integrated client and staff interfaces backed by a robust Express.js + Socket.IO server.",
+  "core_goals": [
+    "Provide seamless real-time video calling functionality between clients and staff with robust WebRTC implementation.",
+    "Ensure secure and scalable JWT-based authentication with token refresh and rate limiting for staff and users.",
+    "Implement real-time notifications and state synchronization across clients and staff using Socket.IO.",
+    "Offer comprehensive productivity tools including meeting management, timetable, tasks, and team directory for enhanced team collaboration.",
+    "Deliver a resilient development and deployment environment with health checks, encoding safety, and integration guides for production readiness."
+  ],
+  "key_features": [
+    "WebRTC Video Calls with CAS-protected call lifecycles to prevent race conditions and reliable SDP/ICE signaling over Socket.IO.",
+    "JWT-based authentication supporting staff login, token refresh, and auto-login demo mode.",
+    "Staff Availability API for real-time staff presence and skills-based routing of calls.",
+    "Real-time notification system with unread tracking, marking as read, and deletion capabilities.",
+    "AI Chat Assistant leveraging Google Gemini for enhanced conversational capabilities.",
+    "Meeting, Timetable, and Task Management with per-user localStorage persistence and summarization.",
+    "Team Directory with group chat and Head of Department privileges.",
+    "Comprehensive development environment with dev scripts, encoding validation, and server readiness checks to prevent connection errors.",
+    "Production-grade WebRTC architecture with timeout workers, TURN server integration, and observable metrics for scalability and maintenance."
+  ],
+  "user_flow_summary": [
+    "Users authenticate via a secure JWT login system with token refresh capabilities.",
+    "Clients initiate video calls to available staff who have set their availability as 'available' via the Staff Availability API.",
+    "Staff receives real-time incoming call notifications and can accept or decline calls, with race conditions safely handled.",
+    "WebRTC signaling occurs via Socket.IO events exchanging SDP offers/answers and ICE candidates for peer connection establishment.",
+    "Notifications for calls and system events synchronize across client and staff interfaces in real-time.",
+    "Users manage their meetings, timetables, tasks, and team interactions via intuitive React-driven UI components with persistent local storage.",
+    "Developers use the development startup guides and health check utilities to ensure smooth environment setup and resilient API calls."
+  ],
+  "validation_criteria": [
+    "All REST API endpoints (login, calls, staff availability, notifications) must respond correctly with appropriate HTTP status codes and JWT authentication enforced.",
+    "WebRTC calls must handle call lifecycle events including initiate, accept (CAS-protected), decline, cancel, and end without race conditions or invalid states.",
+    "Server health check endpoint '/healthz' must reliably indicate server readiness, used in client-side health checks and retry logic.",
+    "Encoding consistency verified with automated scripts that detect and fix BOM issues before builds.",
+    "Integration of new Socket.IO event names ensures real-time synchronization for call signaling and notifications.",
+    "Staff availability status changes and queries must update accurately and reflect in call routing logic.",
+    "Development scripts must start all services concurrently with colored logs and handle common port conflicts gracefully.",
+    "Voice recognition fixes ensure proper microphone access, session management, and audio input processing with improved logging and silence detection."
+  ],
+  "validation_criteria_additional": [
+    "Frontend components properly use the unified API with graceful retries during server startup.",
+    "Database schema changes and repositories for call and staff availability maintain persistent and concurrent state management.",
+    "Production deployment includes optional TURN server configuration and metrics collection for observability.",
+    "Security practices include CORS policies, rate limiting, JWT token handling, and input validation with Zod.",
+    "Build and deployment pipelines run encoding checks and prevent commits with BOM or invalid UTF-16 encodings.",
+    "End-to-end tests cover call flows, notification deliveries, team directory interactions, and AI chat assistant functionality."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "TypeScript",
+      "React 19",
+      "Express.js",
+      "Socket.IO",
+      "PostgreSQL",
+      "Vite",
+      "JWT",
+      "WebRTC",
+      "Zod",
+      "Node.js"
+    ],
+    "features": [
+      {
+        "name": "Health Check",
+        "description": "Server health check endpoint",
+        "files": [
+          "apps/server/src/index.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/healthz": {
+              "get": {
+                "summary": "Health check endpoint",
+                "responses": {
+                  "200": {
+                    "description": "Server is healthy",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "string",
+                              "example": "ok"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Authentication",
+        "description": "JWT-based authentication with login and token refresh",
+        "files": [
+          "apps/server/src/index.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/auth/login": {
+              "post": {
+                "summary": "Staff login",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "email": {
+                            "type": "string",
+                            "format": "email"
+                          },
+                          "password": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "email",
+                          "password"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Login successful",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "token": {
+                              "type": "string"
+                            },
+                            "refreshToken": {
+                              "type": "string"
+                            },
+                            "user": {
+                              "type": "object"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "/api/auth/refresh-token": {
+              "post": {
+                "summary": "Refresh access token",
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "refreshToken": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "refreshToken"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Token refreshed"
+                  }
+                }
+              }
+            },
+            "/api/auth/logout": {
+              "post": {
+                "summary": "Logout user",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Logout successful"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Call Management API",
+        "description": "Production-grade call lifecycle management with CAS operations",
+        "files": [
+          "apps/server/src/routes/calls.ts",
+          "apps/server/src/repositories/CallRepository.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/v1/calls": {
+              "post": {
+                "summary": "Initiate a video call",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "orgId": {
+                            "type": "string"
+                          },
+                          "clientId": {
+                            "type": "string"
+                          },
+                          "reason": {
+                            "type": "string"
+                          },
+                          "targetStaffId": {
+                            "type": "string"
+                          },
+                          "department": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "clientId"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Call initiated",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "callId": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "ringing",
+                                "initiated"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "503": {
+                    "description": "No available staff"
+                  }
+                }
+              }
+            },
+            "/api/v1/calls/{callId}/accept": {
+              "post": {
+                "summary": "Accept a call (CAS-protected)",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "callId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call accepted"
+                  },
+                  "409": {
+                    "description": "Call already accepted or not in ringing state"
+                  }
+                }
+              }
+            },
+            "/api/v1/calls/{callId}/decline": {
+              "post": {
+                "summary": "Decline a call",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "callId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "reason": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Call declined"
+                  }
+                }
+              }
+            },
+            "/api/v1/calls/{callId}/cancel": {
+              "post": {
+                "summary": "Cancel a call",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "callId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call canceled"
+                  }
+                }
+              }
+            },
+            "/api/v1/calls/{callId}/end": {
+              "post": {
+                "summary": "End a call",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "callId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call ended"
+                  }
+                }
+              }
+            },
+            "/api/v1/calls/{callId}": {
+              "get": {
+                "summary": "Get call details",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "callId",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call details with participants"
+                  },
+                  "404": {
+                    "description": "Call not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Staff Availability API",
+        "description": "Manage staff availability status and query available staff",
+        "files": [
+          "apps/server/src/routes/staff.ts",
+          "apps/server/src/repositories/StaffAvailabilityRepository.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/v1/staff/availability": {
+              "get": {
+                "summary": "Get available staff",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "orgId",
+                    "in": "query",
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "skills",
+                    "in": "query",
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "List of available staff",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "staff": {
+                              "type": "array",
+                              "items": {
+                                "type": "object"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "post": {
+                "summary": "Set staff availability status",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "requestBody": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "available",
+                              "busy",
+                              "away",
+                              "offline"
+                            ]
+                          },
+                          "orgId": {
+                            "type": "string"
+                          },
+                          "skills": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "status"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Availability updated"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Legacy Call API",
+        "description": "Legacy call initiation and WebRTC signaling endpoints",
+        "files": [
+          "apps/server/src/index.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/calls/initiate": {
+              "post": {
+                "summary": "Initiate call (legacy)",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call initiated"
+                  }
+                }
+              }
+            },
+            "/api/calls/accept": {
+              "post": {
+                "summary": "Accept call (legacy)",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call accepted"
+                  }
+                }
+              }
+            },
+            "/api/calls/decline": {
+              "post": {
+                "summary": "Decline call (legacy)",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Call declined"
+                  }
+                }
+              }
+            },
+            "/api/calls/sdp": {
+              "post": {
+                "summary": "Exchange SDP offer/answer",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "SDP exchanged"
+                  }
+                }
+              }
+            },
+            "/api/calls/ice": {
+              "post": {
+                "summary": "Exchange ICE candidates",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "ICE candidate exchanged"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Notifications API",
+        "description": "Real-time notification management",
+        "files": [
+          "apps/server/src/index.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/notifications": {
+              "get": {
+                "summary": "Get all notifications",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "List of notifications"
+                  }
+                }
+              },
+              "post": {
+                "summary": "Create notification",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Notification created"
+                  }
+                }
+              }
+            },
+            "/api/notifications/unread": {
+              "get": {
+                "summary": "Get unread notifications",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "List of unread notifications"
+                  }
+                }
+              }
+            },
+            "/api/notifications/{id}/read": {
+              "patch": {
+                "summary": "Mark notification as read",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Notification marked as read"
+                  }
+                }
+              }
+            },
+            "/api/notifications/read-all": {
+              "patch": {
+                "summary": "Mark all notifications as read",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "All notifications marked as read"
+                  }
+                }
+              }
+            },
+            "/api/notifications/{id}": {
+              "delete": {
+                "summary": "Delete notification",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "Notification deleted"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "User API",
+        "description": "User profile and information",
+        "files": [
+          "apps/server/src/index.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "paths": {
+            "/api/user/{username}": {
+              "get": {
+                "summary": "Get user information",
+                "security": [
+                  {
+                    "bearerAuth": []
+                  }
+                ],
+                "parameters": [
+                  {
+                    "name": "username",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "User information"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Socket.IO Real-time Communication",
+        "description": "Real-time signaling for WebRTC calls and notifications",
+        "files": [
+          "apps/server/src/socket.ts"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Socket.IO Events",
+            "version": "1.0.0"
+          },
+          "paths": {},
+          "components": {
+            "schemas": {
+              "SocketEvents": {
+                "type": "object",
+                "properties": {
+                  "call.initiated": {
+                    "description": "Emitted when a call is initiated",
+                    "type": "object"
+                  },
+                  "call.accepted": {
+                    "description": "Emitted when a call is accepted",
+                    "type": "object"
+                  },
+                  "call.declined": {
+                    "description": "Emitted when a call is declined",
+                    "type": "object"
+                  },
+                  "call.canceled": {
+                    "description": "Emitted when a call is canceled",
+                    "type": "object"
+                  },
+                  "call.ended": {
+                    "description": "Emitted when a call ends",
+                    "type": "object"
+                  },
+                  "call:update": {
+                    "description": "Emitted when call state updates",
+                    "type": "object"
+                  },
+                  "call:incoming": {
+                    "description": "Legacy event for incoming calls",
+                    "type": "object"
+                  },
+                  "call:sdp": {
+                    "description": "WebRTC SDP exchange",
+                    "type": "object"
+                  },
+                  "call:ice": {
+                    "description": "WebRTC ICE candidate exchange",
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

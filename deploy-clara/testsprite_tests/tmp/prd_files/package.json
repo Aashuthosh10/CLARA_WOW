@@ -1,0 +1,29 @@
+{
+  "name": "clara-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k --names \"SERVER,CLIENT,STAFF\" --prefix-colors \"bgBlue.bold,bgGreen.bold,bgMagenta.bold\" \"npm:dev:server\" \"npm:dev:client\" \"npm:dev:staff\"",
+    "dev:server": "npm --workspace apps/server run dev",
+    "dev:client": "npm --workspace apps/client run dev",
+    "dev:staff": "npm --workspace apps/staff run dev",
+    "dev:server-only": "npm --workspace apps/server run dev",
+    "build": "npm run check:encoding && npm -w apps/client run build && npm -w apps/staff run build && npm -w apps/server run build",
+    "start": "npm -w apps/server run start",
+    "test": "npm -w apps/server test && npm -w apps/client test && npm -w apps/staff test",
+    "lint": "eslint .",
+    "format": "prettier -w .",
+    "check:encoding": "node scripts/check-encoding.js",
+    "fix:encoding": "node scripts/check-encoding.js --fix"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "eslint": "^9.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.6.3"
+  }
+}

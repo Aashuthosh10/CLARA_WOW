@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-11-10T14:34:17.084812",
+  "total_tests": 15,
+  "passed": 14,
+  "failed": 1,
+  "errors": 0,
+  "timeouts": 0,
+  "skipped": 0,
+  "total_duration": 316.70907735824585,
+  "results": [
+    {
+      "test": "TC020_socketio_call_notifications_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 17.188260316848755,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in, staffId: nagashreen\n[Test] Step 2: Connecting staff to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Staff Socket.IO connected\n[Test] Joining staff room for staffId: nagashreen\n[Test] Staff joined room\n[Test] Step 3: Logging in as client...\n[Test] Client logged in\n[Test] Step 3.5: Setting staff availability...\n[Test] Staff availability set to available\n[Test] Step 4: Initiating call from client with client name...\n[Test] Call initiated, callId: f1e244fd-e46f-4827-b157-be92fe75f246\n[Test] Step 5: Waiting for call.initiated event...\n[Test] [PASS] Received call.initiated event: {'callId': 'f1e244fd-e46f-4827-b157-be92fe75f246', 'client': {'id': 'test-client-123', 'name': 'Test User from Prechat', 'avatar': 'https://ui-avatars.com/api/?name=Test%20User%20from%20Prechat&background=6366f1&color=fff'}, 'createdAt': 1762765155396}\n[Test] Step 6: Validating event data structure...\n[Test] [PASS] Client name verified: Test User from Prechat\n[Test] [PASS] Event data structure validated\n[Test] [PASS] TC020 PASSED: Staff receives call.initiated event correctly\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC021_socketio_call_acceptance_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 24.1026873588562,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in and set to available, staffId: nagashreen\n[Test] Step 2: Connecting staff to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Staff Socket.IO connected and joined room\n[Test] Step 3: Logging in as client...\n[SocketIO] Connected to /rtc\n[Test] Client logged in and Socket.IO connected\n[Test] Step 4: Initiating call from client...\n[Test] Call initiated, callId: b3862d33-6026-496d-93a5-23c5d7ffa2e3\n[Test] Step 5: Waiting for call.initiated event on staff...\n[Test] Staff received call.initiated event\n[Test] Step 6: Joining call rooms...\n[Test] Step 7: Accepting call from staff...\n[Test] Call accepted via API\n[Test] Step 8: Waiting for call.accepted event on client...\n[Test] [PASS] Received call.accepted event: {'callId': 'b3862d33-6026-496d-93a5-23c5d7ffa2e3', 'staff': {'id': 'nagashreen', 'name': 'nagashreen@gmail.com'}}\n[Test] Step 9: Validating call.accepted event data...\n[Test] [PASS] Event data validated\n[Test] Step 10: Checking for call:update event...\n[Test] [PASS] Received call:update event with accepted state\n[Test] [PASS] TC021 PASSED: Call acceptance events work correctly\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC022_socketio_call_decline_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 28.442835092544556,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in and set to available, staffId: nagashreen\n[Test] Step 2: Connecting staff to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Staff Socket.IO connected and joined room\n[Test] Step 3: Logging in as client...\n[SocketIO] Connected to /rtc\n[Test] Client logged in and Socket.IO connected\n[Test] Step 4: Initiating call from client...\n[Test] Call initiated, callId: 1906b831-f93a-496d-8c8d-d1a7d28640be\n[Test] Step 5: Waiting for call.initiated event on staff...\n[Test] Staff received call.initiated event\n[Test] Step 6: Joining call room...\n[Test] Step 7: Declining call from staff...\n[Test] Call declined via API\n[Test] Step 8: Waiting for call.declined event on client...\n[Test] [PASS] Received call.declined event: {'callId': '1906b831-f93a-496d-8c8d-d1a7d28640be', 'reason': 'Test decline reason'}\n[Test] Step 9: Validating call.declined event data...\n[Test] [PASS] Event data validated\n[Test] Step 10: Checking for call:update event...\n[Test] [PASS] TC022 PASSED: Call decline events work correctly\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC023_socketio_call_lifecycle_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 26.09196162223816,
+      "stdout": "[Test] Step 1: Setting up staff...\n[SocketIO] Connected to /rtc\n[Test] Staff ready, staffId: nagashreen\n[Test] Step 2: Setting up client...\n[SocketIO] Connected to /rtc\n[Test] Client ready\n[Test] Step 3: Initiating call...\n[Test] Call initiated, callId: 6fc1d0eb-9eba-4adf-b996-fb49f79b2c13\n[Test] Step 4: Verifying call.initiated event...\n[Test] [PASS] call.initiated event received\n[Test] Step 5: Joining call rooms...\n[Test] Step 6: Accepting call...\n[Test] Step 7: Verifying call.accepted event...\n[Test] [PASS] call.accepted event received\n[Test] Step 8: Verifying call:update events...\n[Test] [PASS] call:update (accepted) received on staff socket\n[Test] Step 9: Ending call...\n[Test] Step 10: Verifying call end events...\n[Test] [PASS] call.ended event received\n[Test] [PASS] TC023 PASSED: Complete call lifecycle works via Socket.IO\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC024_socketio_webrtc_sdp_exchange_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 24.502830505371094,
+      "stdout": "[Test] Step 1: Setting up staff...\n[SocketIO] Connected to /rtc\n[Test] Staff ready, staffId: nagashreen\n[Test] Step 2: Setting up client...\n[SocketIO] Connected to /rtc\n[Test] Client ready\n[Test] Step 3: Initiating call...\n[Test] Call initiated, callId: 37757e1d-abc9-4240-8259-14d048a3e640\n[Test] Step 4: Waiting for call.initiated and joining call rooms...\n[Test] Both parties joined call room\n[Test] Step 5: Accepting call...\n[Test] Step 6: Setting up SDP offer listener on staff socket...\n[Test] Step 7: Client sending SDP offer...\n[Test] SDP offer sent from client\n[Test] Step 8: Waiting for staff to receive SDP offer...\n[Test] [PASS] Staff received SDP offer correctly\n[Test] Step 9: Setting up SDP answer listener on client socket...\n[Test] Step 10: Staff sending SDP answer...\n[Test] SDP answer sent from staff\n[Test] Step 11: Waiting for client to receive SDP answer...\n[Test] [PASS] Client received SDP answer correctly\n[Test] [PASS] TC024 PASSED: SDP offer/answer exchange works via Socket.IO\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC025_socketio_webrtc_ice_candidates_test.py",
+      "status": "failed",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\mnave\\OneDrive\\Desktop\\clara dup\\CLARA_CHILL\\testsprite_tests\\TC025_socketio_webrtc_ice_candidates_test.py\", line 219, in <module>\n    test_socketio_webrtc_ice_candidates()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\mnave\\OneDrive\\Desktop\\clara dup\\CLARA_CHILL\\testsprite_tests\\TC025_socketio_webrtc_ice_candidates_test.py\", line 194, in test_socketio_webrtc_ice_candidates\n    assert received_candidate_str == expected_candidate_str, f\"ICE candidate content mismatch. Received: {received_candidate_str}, Expected: {expected_candidate_str}\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ICE candidate content mismatch. Received: candidate:1 1 UDP 2130706431 192.168.1.1 54321 typ host, Expected: candidate:2 1 UDP 2130706431 192.168.1.2 54322 typ host\n",
+      "duration": 24.595253944396973,
+      "stdout": "[Test] Step 1: Setting up staff...\n[SocketIO] Connected to /rtc\n[Test] Staff ready, staffId: nagashreen\n[Test] Step 2: Setting up client...\n[SocketIO] Connected to /rtc\n[Test] Client ready\n[Test] Step 3: Initiating and accepting call...\n[Test] Call accepted, callId: 8d98130a-44c3-4b2d-ae40-31d9f0d3c613\n[Test] Step 4: Setting up ICE candidate listener on staff socket...\n[Test] Step 5: Client sending ICE candidate...\n[Test] ICE candidate sent from client\n[Test] Step 6: Waiting for staff to receive ICE candidate...\n[Test] [PASS] Staff received ICE candidate correctly\n[Test] Step 7: Setting up ICE candidate listener on client socket...\n[Test] Step 8: Staff sending ICE candidate...\n[Test] ICE candidate sent from staff\n[Test] Step 9: Waiting for client to receive ICE candidate...\n[Test] Received candidate2: {'candidate': 'candidate:1 1 UDP 2130706431 192.168.1.1 54321 typ host', 'sdpMLineIndex': 0, 'sdpMid': '0'}, Expected: {'candidate': 'candidate:2 1 UDP 2130706431 192.168.1.2 54322 typ host', 'sdpMLineIndex': 0, 'sdpMid': '0'}\n[Test] [FAIL] TC025 FAILED: ICE candidate content mismatch. Received: candidate:1 1 UDP 2130706431 192.168.1.1 54321 typ host, Expected: candidate:2 1 UDP 2130706431 192.168.1.2 54322 typ host\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\mnave\\OneDrive\\Desktop\\clara dup\\CLARA_CHILL\\testsprite_tests\\TC025_socketio_webrtc_ice_candidates_test.py\", line 219, in <module>\n    test_socketio_webrtc_ice_candidates()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\mnave\\OneDrive\\Desktop\\clara dup\\CLARA_CHILL\\testsprite_tests\\TC025_socketio_webrtc_ice_candidates_test.py\", line 194, in test_socketio_webrtc_ice_candidates\n    assert received_candidate_str == expected_candidate_str, f\"ICE candidate content mismatch. Received: {received_candidate_str}, Expected: {expected_candidate_str}\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ICE candidate content mismatch. Received: candidate:1 1 UDP 2130706431 192.168.1.1 54321 typ host, Expected: candidate:2 1 UDP 2130706431 192.168.1.2 54322 typ host\n"
+    },
+    {
+      "test": "TC026_socketio_webrtc_full_signaling_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 25.059402465820312,
+      "stdout": "[Test] Step 1: Setting up staff...\n[SocketIO] Connected to /rtc\n[Test] Staff ready, staffId: nagashreen\n[Test] Step 2: Setting up client...\n[SocketIO] Connected to /rtc\n[Test] Client ready\n[Test] Step 3: Initiating and accepting call...\n[Test] Call accepted, callId: 1b15772a-6207-49b2-9aec-f71f42da8fb5\n[Test] Step 4: Setting up SDP offer listener on staff socket...\n[Test] Step 5: Client sending SDP offer...\n[Test] Step 6: Staff processing SDP offer and sending answer...\n[Test] Setting up SDP answer listener on client socket...\n[Test] [PASS] SDP exchange completed\n[Test] Step 8: Exchanging ICE candidates...\n[Test] [PASS] ICE candidate exchange completed\n[Test] Step 8: Verifying event sequencing...\n[Test] Staff received 2 events\n[Test] Client received 0 events\n[Test] [PASS] TC026 PASSED: Complete WebRTC signaling flow works via Socket.IO\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC027_timetable_get_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 6.437070608139038,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in, facultyId: nagashreen\n[Test] Step 2: Getting timetable...\n[Test] [PASS] Timetable retrieved successfully: Dr. Nagashree N - 5th Semester\n[Test] Step 3: Testing non-existent timetable...\n[Test] [PASS] Non-existent timetable correctly returns 404\n[Test] [PASS] TC027 PASSED: Timetable GET endpoint works correctly\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC028_timetable_update_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 6.925322532653809,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in, facultyId: nagashreen\n[Test] Step 2: Updating timetable...\n[Test] [PASS] Timetable updated successfully\n[Test] Step 3: Verifying update by getting timetable...\n[Test] [PASS] Timetable update verified\n[Test] [PASS] TC028 PASSED: Timetable update works correctly\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC029_timetable_socketio_update_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 9.493050336837769,
+      "stdout": "[Test] Step 1: Setting up staff and Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Staff ready, facultyId: nagashreen\n[Test] Step 2: Setting up timetable:updated listener...\n[Test] Step 3: Updating timetable...\n[Test] Step 4: Waiting for timetable:updated event...\n[Test] [PASS] Received timetable:updated event: {'facultyId': 'nagashreen', 'semester': '5th Semester', 'timetable': {'facultyId': 'nagashreen', 'faculty': 'Dr. Nagashree N', 'designation': 'Professor', 'semester': '5th Semester', 'schedule': {'Monday': [{'time': '09:00-10:00', 'subject': 'Updated Subject', 'room': 'Room 201'}], 'Tuesday': [], 'Wednesday': [], 'Thursday': [], 'Friday': [], 'Saturday': []}, 'workload': {'theory': 0, 'lab': 0, 'totalUnits': 0}, 'updatedAt': '2025-11-10T09:02:23.168Z', 'editHistory': [{'editedBy': 'nagashreen@gmail.com', 'date': '2025-11-10T09:02:23.168Z', 'fieldChanged': 'Updated timetable for 5th Semester'}]}}\n[Test] Step 5: Validating event data structure...\n[Test] [PASS] Event data structure validated\n[Test] [PASS] TC029 PASSED: Timetable Socket.IO update event works correctly\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC030_timetable_permissions_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 6.443063020706177,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in, own facultyId: nagashreen\n[Test] Step 2: Testing update of own timetable...\n[Test] [PASS] Own timetable update succeeded (as expected)\n[Test] Step 3: Testing update of other staff's timetable...\n[Test] [WARN]  Other staff's timetable update succeeded (unexpected - may be a bug)\n[Test] [PASS] TC030 PASSED: Timetable permissions test completed\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC031_complete_call_workflow_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 26.39146852493286,
+      "stdout": "[Test] Step 1: Staff login...\n[Test] Staff logged in, staffId: nagashreen\n[Test] Step 2: Setting staff availability...\n[Test] Staff set to available\n[Test] Step 3: Staff connecting to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Staff Socket.IO connected\n[Test] Step 4: Client login...\n[Test] Client logged in\n[Test] Step 5: Client connecting to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Client Socket.IO connected\n[Test] Step 6: Client initiating call...\n[Test] Call initiated, callId: 7b963838-e9f9-402c-8250-32c015fb7f36\n[Test] Step 7: Waiting for staff to receive call.initiated...\n[Test] [PASS] Staff received call.initiated\n[Test] Step 8: Joining call rooms...\n[Test] Step 9: Staff accepting call...\n[Test] Call accepted\n[Test] Step 10: Waiting for client to receive call.accepted...\n[Test] [PASS] Client received call.accepted\n[Test] Step 11: Starting WebRTC signaling (SDP offer)...\n[Test] [PASS] SDP offer received by staff\n[Test] Step 12: Staff sending SDP answer...\n[Test] [PASS] SDP answer received by client\n[Test] Step 13: Exchanging ICE candidates...\n[Test] [PASS] ICE candidate exchange completed\n[Test] Step 14: Ending call...\n[Test] Call ended\n[Test] Step 15: Verifying call end events...\n[Test] [PASS] Call end event received\n[Test] [PASS] TC031 PASSED: Complete call workflow works end-to-end\n[SocketIO] Disconnected from /rtc\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC032_staff_availability_call_routing_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 30.002436637878418,
+      "stdout": "[Test] Step 1: Staff login...\n[Test] Staff logged in, staffId: nagashreen\n[Test] Step 2: Setting staff to offline...\n[Test] [PASS] Offline staff not in available list\n[Test] Step 3: Attempting to initiate call to offline staff...\n[Test] [PASS] Call initiation correctly rejected (503) for offline staff\n[Test] Step 4: Setting staff to available...\n[Test] [PASS] Available staff in available list\n[Test] Step 5: Staff connecting to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Step 6: Initiating call to available staff...\n[Test] Call initiated, callId: 35730de4-1475-4624-aea0-14db5f51820c\n[Test] Step 7: Waiting for staff to receive call.initiated...\n[Test] [PASS] Available staff received call.initiated\n[Test] Step 8: Setting staff to busy...\n[Test] Staff in available list after busy: False\n[Test] [PASS] TC032 PASSED: Staff availability affects call routing\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC033_notification_system_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 28.560508251190186,
+      "stdout": "[Test] Step 1: Setting up staff...\n[SocketIO] Connected to /rtc\n[Test] Staff ready, staffId: nagashreen\n[Test] Step 2: Client initiating call...\n[Test] Call initiated, callId: 0fbec221-d1ca-4624-8880-675be3b98363\n[Test] Step 3: Waiting for call notification...\n[Test] [PASS] Call notification received\n[Test] Step 4: Checking for notification events...\n[Test] [WARN]  No additional notification events (may be expected)\n[Test] Step 5: Accepting call and checking for update notifications...\n[Test] [WARN]  No update notification events (may be expected)\n[Test] [PASS] TC033 PASSED: Notification system works via Socket.IO\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    },
+    {
+      "test": "TC034_call_notification_with_name_test.py",
+      "status": "passed",
+      "error": null,
+      "duration": 16.459559202194214,
+      "stdout": "[Test] Step 1: Logging in as staff...\n[Test] Staff logged in, staffId: nagashreen\n[Test] Step 2: Connecting staff to Socket.IO...\n[SocketIO] Connected to /rtc\n[Test] Staff Socket.IO connected\n[Test] Joining staff room for staffId: nagashreen\n[Test] Staff joined room\n[Test] Step 3: Logging in as client...\n[Test] Client logged in\n[Test] Step 3.5: Setting staff availability...\n[Test] Staff availability set to available\n[Test] Step 4: Initiating call with client name...\n[Test] Call initiated with clientName: Test User Name, callId: 4f2f4737-c83a-49e7-b1f2-74a0cfe059f0\n[Test] Step 5: Waiting for call.initiated event...\n[Test] [PASS] Received call.initiated event: {'callId': '4f2f4737-c83a-49e7-b1f2-74a0cfe059f0', 'client': {'id': 'test-client-123', 'name': 'Test User Name', 'avatar': 'https://ui-avatars.com/api/?name=Test%20User%20Name&background=6366f1&color=fff'}, 'reason': 'Test call with name', 'createdAt': 1762765453981, 'targetStaffId': 'nagashreen'}\n[Test] Step 6: Validating client name in event...\n[Test] [PASS] Client name validated: Test User Name\n[Test] [PASS] TC034 PASSED: Client name is correctly sent and received in call notification\n[SocketIO] Disconnected from /rtc\n",
+      "stderr": ""
+    }
+  ]
+}

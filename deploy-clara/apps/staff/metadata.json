@@ -1,0 +1,7 @@
+{
+  "name": "Staff_interface",
+  "description": "A comprehensive, AI-powered staff dashboard for managing timetables, appointments, video calls, and more, with real-time updates and a modern, glass morphism interface.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
