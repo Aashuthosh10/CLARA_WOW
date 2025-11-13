@@ -143,8 +143,18 @@ type StaffLookupEntry = {
   facultyId: string;
 };
 
-type TimetableEntry =
-  FacultyTimetable['schedule'][keyof FacultyTimetable['schedule']] extends Array<infer U> ? U : never;
+// SemesterClass type from timetableRepository
+type SemesterClass = {
+  time: string;
+  subject: string;
+  subjectCode?: string;
+  courseName?: string;
+  classType?: 'Theory' | 'Lab' | 'Free' | 'Busy';
+  batch?: string;
+  room?: string;
+};
+
+type TimetableEntry = SemesterClass;
 
 function normalizeFacultyId(value: string): string {
   return value.toLowerCase().replace(/[^a-z0-9]/g, '');

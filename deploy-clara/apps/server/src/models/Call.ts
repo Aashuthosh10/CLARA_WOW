@@ -20,6 +20,7 @@ export interface Call {
   acceptedByUserId?: string;
   startedAt?: number;
   endedAt?: number;
+  endedBy?: string;
   reason?: string;
   metadata?: Record<string, any>;
   ringExpiresAt?: number; // For timeout handling
