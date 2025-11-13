@@ -46,6 +46,8 @@ import { StaffAvailabilityRepository } from './repositories/StaffAvailabilityRep
 import { CallRepository as NewCallRepository } from './repositories/CallRepository.js';
 import { createStaffRoutes } from './routes/staff.js';
 import { createCallRoutes } from './routes/calls.js';
+import { createAttendanceRoutes } from './routes/attendanceRoutes.js';
+import { AttendanceRepository } from './repositories/AttendanceRepository.js';
 
 dotenv.config();
 
@@ -102,6 +104,7 @@ const callRepo = new CallRepository();
 const timetableRepo = new TimetableRepository();
 const availabilityRepo = new StaffAvailabilityRepository();
 const newCallRepo = new NewCallRepository();
+const attendanceRepo = new AttendanceRepository();
 
 const STAFF_DIRECTORY: Record<string, { displayName: string; shortCode: string }> = {
   'lakshmidurgan@gmail.com': { displayName: 'Prof. Lakshmi Durga N', shortCode: 'ldn' },
@@ -481,6 +484,7 @@ app.delete('/api/notifications/:id', authMiddleware, (_req, res) => {
 // Mount new v1 API routes (must be before old routes for precedence)
 app.use('/api', authMiddleware, createStaffRoutes(availabilityRepo));
 app.use('/api', authMiddleware, createCallRoutes(newCallRepo, availabilityRepo, io));
+app.use('/api/attendance', authMiddleware, createAttendanceRoutes(attendanceRepo));
 
 // Timetable endpoints
 type AuthPayloadWithEmail = AuthPayload & { email?: string };

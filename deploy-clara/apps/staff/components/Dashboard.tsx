@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useCallback } from 'react';
+import React, { useState, createContext, useEffect, useCallback, lazy, Suspense } from 'react';
 import {
   StaffProfile,
   NavItem,
@@ -18,6 +18,8 @@ import AIChatAssistant from './AIChatAssistant';
 import TaskManagement from './TaskManagement';
 import MeetingSummarizer from './MeetingSummarizer';
 import Timetable from './Timetable';
+// Lazy load Attendance component
+const Attendance = lazy(() => import('../src/pages/Attendance/index'));
 import TeamDirectory from './TeamDirectory';
 import Settings from './Settings';
 import { useNotification } from './NotificationProvider';
@@ -459,9 +461,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, initialView = 'Da
     // Initialize unified RTC if enabled
     const enableUnified = (import.meta.env.VITE_ENABLE_UNIFIED_MODE ?? 'true') === 'true';
     if (enableUnified && user && !staffRTC) {
-      const apiBase =
-        import.meta.env.VITE_API_BASE ||
-        (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:8080');
+      // Always use backend server port (8080), not the staff dev server port
+      const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:8080';
 
       const getStoredToken = () =>
         localStorage.getItem('token') || localStorage.getItem('clara-jwt-token') || null;
@@ -614,6 +615,12 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout, initialView = 'Da
         );
       case 'Timetable':
         return <Timetable initialTimetable={timetable} onTimetableUpdate={handleTimetableUpdate} user={user} />;
+      case 'Attendance':
+        return (
+          <Suspense fallback={<div className="p-6 text-white">Loading Attendance...</div>}>
+            <Attendance />
+          </Suspense>
+        );
       case 'Appointments':
         return <Appointments />;
       case 'Task Management':

@@ -191,6 +191,33 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  // Attendance API methods
+  async importStudents(students: Array<{ studentId: string; name: string; usn: string; semester: number; section: string }>) {
+    return this.request<{ message: string; count: number }>('/attendance/import', {
+      method: 'POST',
+      body: JSON.stringify({ students }),
+    });
+  }
+
+  async getStudents(semester: number, section: string) {
+    return this.request<Array<{ studentId: string; name: string; usn: string; semester: number; section: string }>>(
+      `/attendance/students?sem=${semester}&section=${section}`
+    );
+  }
+
+  async markAttendance(data: {
+    date: string;
+    sem: number;
+    section: string;
+    staffId: string;
+    attendance: Array<{ studentId: string; status: 'present' | 'absent' }>;
+  }) {
+    return this.request<{ message: string; attendanceId: string }>('/attendance/mark', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
 }
 
 export const apiService = new ApiService();

@@ -11,6 +11,7 @@ interface SidebarProps {
 const navItems: { name: NavItem; icon: string }[] = [
   { name: 'Dashboard', icon: 'fa-solid fa-table-columns' },
   { name: 'Timetable', icon: 'fa-solid fa-calendar-days' },
+  { name: 'Attendance', icon: 'fa-solid fa-clipboard-check' },
   { name: 'Appointments', icon: 'fa-solid fa-handshake' },
   { name: 'Task Management', icon: 'fa-solid fa-list-check' },
   { name: 'AI Assistant', icon: 'fa-solid fa-robot' },

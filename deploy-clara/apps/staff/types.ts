@@ -104,7 +104,7 @@ export interface Task {
   status: 'To Do' | 'In Progress' | 'Done';
 }
 
-export type NavItem = "Dashboard" | "Timetable" | "Appointments" | "Task Management" | "AI Assistant" | "Meeting Summarizer" | "Team Directory" | "Settings";
+export type NavItem = "Dashboard" | "Timetable" | "Attendance" | "Appointments" | "Task Management" | "AI Assistant" | "Meeting Summarizer" | "Team Directory" | "Settings";
 
 export interface Meeting {
   id: string;
